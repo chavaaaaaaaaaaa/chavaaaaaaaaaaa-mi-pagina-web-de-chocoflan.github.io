@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galería de Chocoflan</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff8f0;
+      color: #4b2e2e;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #a0522d;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    nav a {
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background-color: #d2691e;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Estilos responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+
+      .gallery {
+        gap: 15px;
+        padding: 0 10px;
+      }
+
+      nav a {
+        padding: 10px 10px;
+        font-size: 0.95em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="uno.html">Inicio</a>
+    <a href="dos.html">¿Qué es el Chocoflan?</a>
+    <a href="tres.html">Ingredientes</a>
+    <a href="cuatro.html">Receta</a>
+    <a href="cinco.html">Galería</a>
+    <a href="seis.html">Preguntas frecuentes</a>
+    <a href="siete.html">Blog</a>
+  </nav>
+
+  <header>
+    <h1>Galería del Chocoflan</h1>
+  </header>
+
+  <section class="gallery">
+    <img src="galeria1.jpg" alt="Chocoflán entero decorado con fresas">
+    <img src="galeria2.jpg" alt="Corte transversal de chocoflán mostrando las capas">
+    <img src="galeria3.jpg" alt="Porción de chocoflán en un plato">
+    <img src="galeria4.jpg" alt="Chocoflán en preparación dentro del molde">
+    <img src="galeria5.jpg" alt="Versión mini de chocoflanes individuales">
+    <img src="galeria6.jpg" alt="Decoración creativa con chocolate y frutas">
+  </section>
+
+</body>
+</html>
