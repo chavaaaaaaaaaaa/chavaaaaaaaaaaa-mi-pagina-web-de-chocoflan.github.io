@@ -16,15 +16,20 @@
     nav {
       background-color: #a0522d;
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       padding: 10px 0;
+      gap: 10px;
     }
 
     nav a {
+      flex: 0 0 auto;
+      white-space: nowrap;
       color: white;
       text-decoration: none;
-      margin: 5px 10px;
+      padding: 5px 10px;
       font-weight: bold;
     }
 
@@ -46,20 +51,16 @@
 
     .blog-section {
       display: flex;
-      overflow-x: auto;
+      flex-direction: column;
       gap: 20px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
       padding: 20px;
     }
 
     .post {
-      flex: 0 0 80%;
       background-color: #fff;
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      scroll-snap-align: start;
     }
 
     .post h2 {
@@ -80,8 +81,8 @@
 
     @media (min-width: 768px) {
       .blog-section {
+        flex-direction: row;
         flex-wrap: wrap;
-        overflow-x: unset;
         justify-content: center;
       }
 
@@ -129,4 +130,10 @@
       <h2>Errores comunes al preparar chocoflan (y cómo evitarlos)</h2>
       <div class="date">Publicado el 10 de mayo de 2025</div>
       <p>
-        Un error común es no cubrir bien el molde con papel aluminio, lo
+        Un error común es no cubrir bien el molde con papel aluminio, lo cual puede provocar que entre agua al flan durante el baño María. También es importante respetar los tiempos de cocción y dejarlo enfriar completamente antes de desmoldar.
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>
