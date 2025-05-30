@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Precios Chocoflan</title>
+  <title>Galería de Chocoflan</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,14 +13,47 @@
       padding: 0;
     }
 
+    nav {
+      background-color: #a0522d;
+      overflow-x: auto;
+      white-space: nowrap;
+      width: 100%;
+      text-align: center;
+    }
+
+    nav a {
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background-color: #d2691e;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      width: 100%;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+    }
+
     .container {
       text-align: center;
       padding: 30px 20px;
     }
 
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 30px;
+    .container h2 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
       color: #000;
     }
 
@@ -78,6 +111,28 @@
       margin: 10px;
     }
 
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
     @media (max-width: 700px) {
       .lower-images {
         flex-direction: column;
@@ -87,13 +142,38 @@
       .price-list {
         max-width: 90%;
       }
+
+      header h1 {
+        font-size: 1.8em;
+      }
+
+      nav a {
+        padding: 10px 10px;
+        font-size: 0.95em;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="uno.html">¿Qué es el Chocoflan?</a>
+    <a href="dos.html">Ingredientes</a>
+    <a href="tres.html">Receta</a>
+    <a href="cuatro.html">Galería</a>
+    <a href="cinco.html">Preguntas frecuentes</a>
+    <a href="seis.html">Blog</a>
+  </nav>
+
+  <header>
+    <h1>Galería del Chocoflan</h1>
+  </header>
+
+  <!-- Sección especial estilo cartel -->
+  <section class="container">
     <div class="cake-icon">🍰</div>
-    <h1>Chocoflan</h1>
+    <h2>Chocoflan</h2>
 
     <!-- Imagen superior -->
     <div class="product-image">
@@ -127,6 +207,17 @@
     </div>
 
     <div class="stars">✨✨✨</div>
-  </div>
+  </section>
+
+  <!-- Galería original -->
+  <section class="gallery">
+    <img src="3.jpg" alt="Chocoflán entero decorado con fresas" width="433" height="280">
+    <img src="4.jpg" alt="Corte transversal de chocoflán mostrando las capas" width="474" height="316">
+    <img src="5.jpg" alt="Porción de chocoflán en un plato" width="431" height="315">
+    <img src="6.jpg" alt="Chocoflán en preparación dentro del molde" width="800" height="600">
+    <img src="7.jpg" alt="Versión mini de chocoflanes individuales" width="441" height="266">
+    <img src="8.jpg" alt="Decoración creativa con chocolate y frutas" width="460" height="266">
+  </section>
+
 </body>
 </html>
