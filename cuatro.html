@@ -3,96 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chocoflan</title>
+  <title>Precios Chocoflan</title>
   <style>
     body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffeee0;
+      color: #2e1a1a;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fdeedc;
-      color: #3b2e2e;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
+      padding: 0;
     }
 
-    .card {
-      background-color: #fff4e6;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-width: 450px;
-      width: 100%;
+    .container {
       text-align: center;
-      position: relative;
+      padding: 30px 20px;
     }
 
-    .card h1 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-
-    .price-list {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-
-    .price-item {
-      background-color: #fff08a;
-      border-radius: 15px;
-      padding: 10px;
-      font-weight: bold;
-      font-size: 1.2em;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
       color: #000;
     }
 
-    .price-item span {
-      color: #c94f4f;
-      font-weight: normal;
+    .product-image {
+      width: 280px;
+      height: auto;
+      border-radius: 30% 70% 70% 30% / 40% 30% 70% 60%;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin: 20px auto;
     }
 
-    .img-top, .img-bottom {
+    .product-image img {
       width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .price-list {
+      background-color: #fff8d6;
+      padding: 20px 40px;
       border-radius: 20px;
-      object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      max-width: 300px;
+      margin: 0 auto;
     }
 
-    .img-top {
-      margin-bottom: 20px;
+    .price-item {
+      background-color: #fff3a0;
+      margin: 15px 0;
+      padding: 10px 20px;
+      border-radius: 15px;
+      font-size: 1.4em;
+      font-weight: bold;
     }
 
-    .img-bottom {
-      margin-top: 10px;
+    .price {
+      color: #c44;
+      display: block;
+      font-size: 1.2em;
+      margin-top: 5px;
     }
 
-    @media (max-width: 480px) {
-      .card h1 {
-        font-size: 1.6em;
+    .lower-images {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .stars, .cake-icon {
+      font-size: 1.5em;
+      color: gold;
+      margin: 10px;
+    }
+
+    @media (max-width: 700px) {
+      .lower-images {
+        flex-direction: column;
+        align-items: center;
       }
 
-      .price-item {
-        font-size: 1em;
+      .price-list {
+        max-width: 90%;
       }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <img src="3.jpg" alt="Chocoflan grande con fresas" class="img-top" />
+  <div class="container">
+    <div class="cake-icon">🍰</div>
     <h1>Chocoflan</h1>
-    <div class="price-list">
-      <div class="price-item">Grande <span>$300</span></div>
-      <div class="price-item">Mediano <span>$250</span></div>
-      <div class="price-item">Rebanada <span>$25</span></div>
+
+    <!-- Imagen superior -->
+    <div class="product-image">
+      <img src="3.jpg" alt="Chocoflán entero decorado con fresas">
     </div>
-    <img src="4.jpg" alt="Rebanada de chocoflan con fresas" class="img-bottom" />
+
+    <!-- Lista de precios -->
+    <div class="price-list">
+      <div class="price-item">
+        Grande
+        <span class="price">$300</span>
+      </div>
+      <div class="price-item">
+        Mediano
+        <span class="price">$250</span>
+      </div>
+      <div class="price-item">
+        Rebanada
+        <span class="price">$25</span>
+      </div>
+    </div>
+
+    <!-- Imágenes inferiores -->
+    <div class="lower-images">
+      <div class="product-image">
+        <img src="5.jpg" alt="Porción de chocoflán decorado con fresas">
+      </div>
+      <div class="product-image">
+        <img src="4.jpg" alt="Chocoflán mediano con caramelo y fresa">
+      </div>
+    </div>
+
+    <div class="stars">✨✨✨</div>
   </div>
 </body>
 </html>
