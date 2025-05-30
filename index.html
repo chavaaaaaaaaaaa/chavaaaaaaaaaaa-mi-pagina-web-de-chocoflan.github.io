@@ -41,15 +41,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
       gap: 20px;
-      text-align: left;
+      flex-wrap: wrap;
     }
 
     header img.logo {
       max-height: 100px;
       height: auto;
       width: auto;
+      flex-shrink: 0;
     }
 
     header h1 {
@@ -84,6 +84,17 @@
 
     /* Estilos responsivos */
     @media (max-width: 600px) {
+      .header-flex {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      header img.logo {
+        max-height: 80px;
+        width: auto;
+        margin-bottom: 10px;
+      }
+
       header h1 {
         font-size: 1.8em;
       }
@@ -99,11 +110,6 @@
       nav a {
         padding: 10px 10px;
         font-size: 0.95em;
-      }
-
-      .header-flex {
-        flex-direction: column;
-        text-align: center;
       }
     }
   </style>
