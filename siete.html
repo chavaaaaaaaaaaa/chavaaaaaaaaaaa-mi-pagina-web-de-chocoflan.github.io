@@ -17,18 +17,6 @@
       font-size: 2em;
     }
 
-    .instructions {
-      max-width: 500px;
-      margin: 10px auto;
-      text-align: left;
-      background: #fff3e0;
-      border: 1px solid #f5cba7;
-      padding: 15px;
-      border-radius: 8px;
-      font-size: 1em;
-      color: #5e3c00;
-    }
-
     #game {
       display: none;
       margin: 20px auto;
@@ -90,6 +78,12 @@
       background-color: #a9cce3;
     }
 
+    #instructions {
+      margin-top: 15px;
+      font-size: 1em;
+      color: #5a3e1b;
+    }
+
     @media (max-width: 600px) {
       .grid {
         grid-template-columns: repeat(8, 35px);
@@ -118,27 +112,21 @@
       #resultText {
         font-size: 1.2em;
       }
+
+      #instructions {
+        font-size: 0.95em;
+      }
     }
   </style>
 </head>
 <body>
 
   <h1>Bienvenido a Buscapasteles</h1>
-
-  <div class="instructions">
-    <strong>Instrucciones:</strong>
-    <ul>
-      <li>Haz clic en una celda para revelarla.</li>
-      <li>Evita los pasteles en mal estado.</li>
-      <li>Marca una celda sospechosa con una bandera:
-        <ul>
-          <li><strong>PC:</strong> clic derecho</li>
-          <li><strong>Móvil:</strong> mantener presionado</li>
-        </ul>
-      </li>
-      <li>Ganas si descubres todas las celdas buenas.</li>
-    </ul>
-  </div>
+  <p id="instructions">
+    Encuentra todos los pasteles buenos sin tocar uno en mal estado.<br>
+    💡 Toque rápido para revelar una celda.<br>
+    🚩 Mantén presionado para colocar una bandera en móvil (o clic derecho en PC).
+  </p>
 
   <button id="startBtn">Empezar juego</button>
 
@@ -147,7 +135,7 @@
   </div>
 
   <div id="message">
-    <h2 id="resultText"></h2>
+    <h2 id="resultText">Perdiste. Encontraste un pastel en mal estado.</h2>
     <button id="retryBtn">Reintentar</button>
     <button id="exitBtn">Salir</button>
   </div>
@@ -217,15 +205,33 @@
           div.className = 'cell';
           div.dataset.row = row;
           div.dataset.col = col;
+
+          // PC: clic y clic derecho
           div.addEventListener('click', () => revealCell(row, col));
           div.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             toggleFlag(row, col);
           });
-          div.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            toggleFlag(row, col);
-          }, { passive: false });
+
+          // Móvil: long press para bandera
+          let touchTimer;
+          let longPress = false;
+
+          div.addEventListener('touchstart', () => {
+            longPress = false;
+            touchTimer = setTimeout(() => {
+              longPress = true;
+              toggleFlag(row, col);
+            }, 500);
+          }, { passive: true });
+
+          div.addEventListener('touchend', () => {
+            clearTimeout(touchTimer);
+            if (!longPress) {
+              revealCell(row, col);
+            }
+          });
+
           cells[row][col].element = div;
           grid.appendChild(div);
         }
@@ -308,7 +314,7 @@
       const totalSafe = gridSize * gridSize - badCakes;
       if (revealedCount === totalSafe) {
         revealAll();
-        resultText.textContent = '¡Felicidades, ganaste!';
+        resultText.textContent = 'Felicidades, ganaste :)';
         message.style.display = 'block';
       }
     }
@@ -326,7 +332,7 @@
     });
 
     exitBtn.addEventListener('click', () => {
-      window.location.href = 'index.html'; // Asegúrate de que exista ese archivo
+      window.location.href = 'index.html';
     });
   </script>
 
