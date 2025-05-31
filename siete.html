@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscapasteles</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8f0;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #d2691e;
+      font-size: 2em;
+    }
+
+    #game {
+      display: none;
+      margin: 20px auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(8, 50px);
+      grid-gap: 5px;
+      justify-content: center;
+    }
+
+    .cell {
+      width: 50px;
+      height: 50px;
+      background-color: #ffdfba;
+      border: 1px solid #d2691e;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cell.revealed {
+      background-color: #fff3e0;
+      cursor: default;
+    }
+
+    .cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #message {
+      display: none;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+    }
+
+    #startBtn {
+      background-color: #f8c471;
+    }
+
+    #retryBtn {
+      background-color: #f1948a;
+    }
+
+    #exitBtn {
+      background-color: #a9cce3;
+    }
+
+    /* ?? Estilos responsivos para móviles */
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: repeat(8, 35px);
+        grid-gap: 4px;
+      }
+
+      .cell {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+      }
+
+      button {
+        width: 90%;
+        max-width: 300px;
+        font-size: 18px;
+        padding: 14px;
+        margin: 8px auto;
+        display: block;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      #resultText {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Bienvenido a Buscapasteles</h1>
+  <button id="startBtn">Empezar juego</button>
+
+  <div id="game">
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div id="message">
+    <h2 id="resultText">Perdiste Encontraste un pastel en mal estado ?</h2>
+    <button id="retryBtn">Reintentar</button>
+    <button id="exitBtn">Salir</button>
+  </div>
+
+  <script>
+    const grid = document.getElementById('grid');
+    const startBtn = document.getElementById('startBtn');
+    const retryBtn = document.getElementById('retryBtn');
+    const exitBtn = document.getElementById('exitBtn');
+    const game = document.getElementById('game');
+    const message = document.getElementById('message');
+    const resultText = document.getElementById('resultText');
+
+    const gridSize = 8;
+    const badCakes = 10;
+    let cells = [];
+    let revealedCount = 0;
+
+    function createGrid() {
+      grid.innerHTML = '';
+      cells = [];
+      revealedCount = 0;
+
+      for (let row = 0; row < gridSize; row++) {
+        cells[row] = [];
+        for (let col = 0; col < gridSize; col++) {
+          cells[row][col] = {
+            hasBadCake: false,
+            revealed: false,
+            flagged: false,
+            element: null,
+            nearby: 0
+          };
+        }
+      }
+
+      let placed = 0;
+      while (placed < badCakes) {
+        const row = Math.floor(Math.random() * gridSize);
+        const col = Math.floor(Math.random() * gridSize);
+        if (!cells[row][col].hasBadCake) {
+          cells[row][col].hasBadCake = true;
+          placed++;
+        }
+      }
+
+      for (let row = 0; row < gridSize; row++) {
+        for (let col = 0; col < gridSize; col++) {
+          if (cells[row][col].hasBadCake) continue;
+          let count = 0;
+          for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+              const r = row + i;
+              const c = col + j;
+              if (r >= 0 && r < gridSize && c >= 0 && c < gridSize && cells[r][c].hasBadCake) {
+                count++;
+              }
+            }
+          }
+          cells[row][col].nearby = count;
+        }
+      }
+
+      for (let row = 0; row < gridSize; row++) {
+        for (let col = 0; col < gridSize; col++) {
+          const div = document.createElement('div');
+          div.className = 'cell';
+          div.dataset.row = row;
+          div.dataset.col = col;
+          div.addEventListener('click', () => revealCell(row, col));
+          div.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            toggleFlag(row, col);
+          });
+          cells[row][col].element = div;
+          grid.appendChild(div);
+        }
+      }
+    }
+
+    function revealCell(row, col) {
+      const cell = cells[row][col];
+      if (cell.revealed || cell.flagged) return;
+
+      cell.revealed = true;
+      revealedCount++;
+      const div = cell.element;
+      div.classList.add('revealed');
+      div.style.cursor = 'default';
+
+      if (cell.hasBadCake) {
+        div.innerHTML = '<img src="11.png" alt="Pastel malo">';
+        revealAll();
+        resultText.textContent = 'Perdiste Encontraste un pastel en mal estado ';
+        message.style.display = 'block';
+        return;
+      }
+
+      if (cell.nearby > 0) {
+        div.textContent = cell.nearby;
+      } else {
+        div.innerHTML = '<img src="12.png" alt="Pastel bueno">';
+        for (let i = -1; i <= 1; i++) {
+          for (let j = -1; j <= 1; j++) {
+            const r = row + i;
+            const c = col + j;
+            if (r >= 0 && r < gridSize && c >= 0 && c < gridSize) {
+              revealCell(r, c);
+            }
+          }
+        }
+      }
+
+      checkWin();
+    }
+
+    function toggleFlag(row, col) {
+      const cell = cells[row][col];
+      if (cell.revealed) return;
+
+      cell.flagged = !cell.flagged;
+      const div = cell.element;
+
+      if (cell.flagged) {
+        div.innerHTML = '<img src="13.png" alt="Bandera">';
+        div.style.backgroundColor = '#ffd9b3';
+      } else {
+        div.innerHTML = '';
+        div.style.backgroundColor = '#ffdfba';
+      }
+    }
+
+    function revealAll() {
+      for (let row = 0; row < gridSize; row++) {
+        for (let col = 0; col < gridSize; col++) {
+          const cell = cells[row][col];
+          if (!cell.revealed) {
+            cell.revealed = true;
+            const div = cell.element;
+            div.classList.add('revealed');
+            if (cell.hasBadCake) {
+              div.innerHTML = '<img src="11.png" alt="Pastel malo">';
+            } else if (cell.nearby > 0) {
+              div.textContent = cell.nearby;
+            } else {
+              div.innerHTML = '<img src="12.png" alt="Pastel bueno">';
+            }
+          }
+        }
+      }
+    }
+
+    function checkWin() {
+      const totalSafe = gridSize * gridSize - badCakes;
+      if (revealedCount === totalSafe) {
+        revealAll();
+        resultText.textContent = 'Felicidades, ganaste :)';
+        message.style.display = 'block';
+      }
+    }
+
+    startBtn.addEventListener('click', () => {
+      createGrid();
+      game.style.display = 'block';
+      startBtn.style.display = 'none';
+      message.style.display = 'none';
+    });
+
+    retryBtn.addEventListener('click', () => {
+      createGrid();
+      message.style.display = 'none';
+    });
+
+    exitBtn.addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+  </script>
+
+</body>
+</html>
