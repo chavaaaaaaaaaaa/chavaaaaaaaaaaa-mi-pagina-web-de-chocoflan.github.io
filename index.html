@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¿Qué es un Chocoflan?</title>
+  <title>Chocoflan - El pastel imposible</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,43 +34,76 @@
     header {
       background-color: #d2691e;
       color: white;
-      text-align: center;
       padding: 30px 20px;
+    }
+
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    header img.logo {
+      max-height: 100px;
+      height: auto;
+      width: auto;
+      flex-shrink: 0;
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.2em;
+      font-size: 2.5em;
     }
 
-    .content-section {
+    .slogan {
+      font-size: 1.2em;
+      font-style: italic;
+      margin-top: 5px;
+    }
+
+    .intro-section {
       max-width: 1000px;
       margin: 40px auto;
       padding: 20px;
-      text-align: justify;
+      text-align: center;
     }
 
-    .content-section img {
-      display: block;
-      margin: 20px auto;
-      max-width: 600px;
+    .intro-section img {
       width: 100%;
+      max-width: 600px;
       border-radius: 15px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
-    .content-section p {
+    .intro-section p {
       font-size: 1.1em;
-      line-height: 1.6;
+      margin-top: 20px;
     }
 
     /* Estilos responsivos */
     @media (max-width: 600px) {
+      .header-flex {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      header img.logo {
+        max-height: 80px;
+        width: auto;
+        margin-bottom: 10px;
+      }
+
       header h1 {
         font-size: 1.8em;
       }
 
-      .content-section p {
+      .slogan {
+        font-size: 1em;
+      }
+
+      .intro-section p {
         font-size: 1em;
       }
 
@@ -94,22 +127,23 @@
   <a href="seis.html">Blog</a>
   <a href="siete.html">Juego</a>
 </nav>
-</nav>
+
+  </nav>
 
   <header>
-    <h1>¿Qué es un Chocoflan?</h1>
+    <div class="header-flex">
+      <img src="10.png" alt="Logotipo del sitio" class="logo">
+      <div>
+        <h1>Bienvenido al mundo del Chocoflan</h1>
+        <div class="slogan">"El pastel que desafía la lógica y conquista corazones"</div>
+      </div>
+    </div>
   </header>
 
-  <section class="content-section">
-    <img src="2.jpg" alt="Corte de un chocoflán mostrando sus capas" width="440" height="331">
+  <section class="intro-section">
+    <img src="1.jpg" alt="Delicioso chocoflán" width="399" height="237">
     <p>
-      El chocoflan, también conocido como "pastel imposible", es un postre mexicano que combina dos deliciosas capas en una sola preparación: un pastel de chocolate y un flan de vainilla. Su nombre proviene del efecto inesperado que ocurre al hornearlo, ya que las capas se invierten durante la cocción: el flan sube mientras que el pastel baja.
-    </p>
-    <p>
-      Esta característica hace que el chocoflan sea no solo un deleite para el paladar, sino también una sorpresa visual. La base suave y esponjosa del pastel de chocolate contrasta perfectamente con la textura cremosa del flan, creando una experiencia única.
-    </p>
-    <p>
-      Tradicionalmente se hornea en baño maría y se cubre con una capa de cajeta (dulce de leche), lo que lo convierte en un favorito de celebraciones, reuniones familiares y ocasiones especiales. Es un claro ejemplo de cómo la repostería puede ser arte y ciencia a la vez.
+      El chocoflan, también conocido como pastel imposible, es una deliciosa combinación de pastel de chocolate y flan que desafía la lógica culinaria. Aunque sus capas se invierten durante la cocción, el resultado es un postre espectacular tanto en sabor como en apariencia.
     </p>
   </section>
 
