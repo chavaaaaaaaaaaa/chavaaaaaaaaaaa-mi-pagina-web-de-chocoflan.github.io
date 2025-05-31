@@ -17,6 +17,13 @@
       font-size: 2em;
     }
 
+    #flagHelp {
+      display: none;
+      color: #d2691e;
+      font-weight: bold;
+      margin: 10px;
+    }
+
     #game {
       display: none;
       margin: 20px auto;
@@ -78,7 +85,6 @@
       background-color: #a9cce3;
     }
 
-    /* 📱 Estilos responsivos para móviles */
     @media (max-width: 600px) {
       .grid {
         grid-template-columns: repeat(8, 35px);
@@ -107,22 +113,27 @@
       #resultText {
         font-size: 1.2em;
       }
+
+      #flagHelp {
+        display: block;
+      }
     }
   </style>
 </head>
 <body>
 
   <h1>Bienvenido a Buscapasteles</h1>
+  <p id="flagHelp">Mantén presionada una celda para colocar una bandera (en móvil).</p>
   <button id="startBtn">Empezar juego</button>
-  <button id="exitBtn">Salir</button> <!-- MOVIDO AQUÍ -->
 
   <div id="game">
     <div class="grid" id="grid"></div>
   </div>
 
   <div id="message">
-    <h2 id="resultText">Perdiste Encontraste un pastel en mal estado</h2>
+    <h2 id="resultText">Perdiste, encontraste un pastel en mal estado</h2>
     <button id="retryBtn">Reintentar</button>
+    <button id="exitBtn">Salir</button>
   </div>
 
   <script>
@@ -190,11 +201,27 @@
           div.className = 'cell';
           div.dataset.row = row;
           div.dataset.col = col;
+
+          // Soporte para revelar, bandera (PC y móvil)
+          let pressTimer;
+
           div.addEventListener('click', () => revealCell(row, col));
+
           div.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             toggleFlag(row, col);
           });
+
+          div.addEventListener('touchstart', () => {
+            pressTimer = setTimeout(() => {
+              toggleFlag(row, col);
+            }, 600);
+          });
+
+          div.addEventListener('touchend', () => {
+            clearTimeout(pressTimer);
+          });
+
           cells[row][col].element = div;
           grid.appendChild(div);
         }
@@ -295,7 +322,7 @@
     });
 
     exitBtn.addEventListener('click', () => {
-      window.location.href = 'index.html'; // Cambia esto a la página que desees
+      window.location.href = 'index.html';
     });
   </script>
 
