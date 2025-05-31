@@ -114,15 +114,15 @@
 
   <h1>Bienvenido a Buscapasteles</h1>
   <button id="startBtn">Empezar juego</button>
+  <button id="exitBtn">Salir</button> <!-- MOVIDO AQUÍ -->
 
   <div id="game">
     <div class="grid" id="grid"></div>
   </div>
 
   <div id="message">
-    <h2 id="resultText">Perdiste Encontraste un pastel en mal estado ‍</h2>
+    <h2 id="resultText">Perdiste Encontraste un pastel en mal estado</h2>
     <button id="retryBtn">Reintentar</button>
-    <button id="exitBtn">Salir</button>
   </div>
 
   <script>
@@ -214,7 +214,7 @@
       if (cell.hasBadCake) {
         div.innerHTML = '<img src="11.png" alt="Pastel malo">';
         revealAll();
-        resultText.textContent = 'Perdiste Encontraste un pastel en mal estado ';
+        resultText.textContent = 'Perdiste Encontraste un pastel en mal estado';
         message.style.display = 'block';
         return;
       }
@@ -295,7 +295,7 @@
     });
 
     exitBtn.addEventListener('click', () => {
-      window.location.href = 'index.html';
+      window.location.href = 'index.html'; // Cambia esto a la página que desees
     });
   </script>
 
