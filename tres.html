@@ -5,87 +5,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Receta del Chocoflan</title>
   <style>
+    /* Fuente y colores base */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fff8f0;
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fffaf5;
       color: #4b2e2e;
       margin: 0;
       padding: 0;
+      line-height: 1.6;
     }
 
+    /* NAVBAR */
     nav {
-      background-color: #a0522d;
-      overflow-x: auto;
-      white-space: nowrap;
+      background: linear-gradient(90deg, #a0522d, #8b4513);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     nav a {
-      display: inline-block;
-      color: white;
+      color: #fff;
       text-decoration: none;
-      padding: 10px 15px;
-      font-weight: bold;
+      padding: 12px 20px;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      background-color: #d2691e;
+      border-radius: 8px;
     }
 
+    /* HEADER */
     header {
-      background-color: #d2691e;
+      background: linear-gradient(to right, #d2691e, #a0522d);
       color: white;
       text-align: center;
-      padding: 30px 20px;
+      padding: 50px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.2em;
+      font-size: 2.5em;
+      letter-spacing: 1px;
     }
 
+    /* CONTENIDO */
     .content-section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
+      max-width: 850px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      animation: fadeIn 0.6s ease-in-out;
     }
 
     .content-section h2 {
       color: #6b3e26;
-      margin-bottom: 15px;
-      font-size: 1.5em;
       text-align: center;
+      margin-bottom: 25px;
+      font-size: 1.8em;
+      position: relative;
+    }
+
+    .content-section h2::after {
+      content: '';
+      width: 60px;
+      height: 3px;
+      background-color: #d2691e;
+      display: block;
+      margin: 10px auto 0;
+      border-radius: 2px;
     }
 
     ol {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      font-size: 1.1em;
-      line-height: 1.8;
+      padding: 0;
+      list-style: decimal inside;
     }
 
     ol li {
-      margin-bottom: 15px;
+      margin: 15px 0;
+      padding: 12px 15px;
+      background-color: #fff8f0;
+      border-left: 5px solid #d2691e;
+      border-radius: 8px;
+      transition: transform 0.2s ease;
     }
 
-    /* Estilos responsive */
+    ol li:hover {
+      transform: translateX(5px);
+      background-color: #fff3e0;
+    }
+
+    /* ANIMACIONES */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      background-color: #a0522d;
+      color: #fff;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9em;
+      box-shadow: 0 -3px 8px rgba(0,0,0,0.1);
+    }
+
+    /* RESPONSIVE */
     @media (max-width: 600px) {
       header h1 {
-        font-size: 1.8em;
+        font-size: 2em;
       }
-
       .content-section {
-        padding: 15px;
+        padding: 20px;
       }
-
-      ol {
-        font-size: 1em;
-        padding: 15px;
-      }
-
       nav a {
-        padding: 10px 10px;
+        padding: 10px 12px;
         font-size: 0.95em;
       }
     }
@@ -94,15 +135,14 @@
 <body>
 
   <nav>
-<nav>
-  <a href="index.html">Inicio</a>
-  <a href="uno.html">¿Qué es el Chocoflan?</a>
-  <a href="dos.html">Ingredientes</a>
-  <a href="tres.html">Receta</a>
-  <a href="cuatro.html">Galería</a>
-  <a href="seis.html">Blog</a>
-  <a href="siete.html">Juego</a> <!-- NUEVO ENLACE -->
-</nav>
+    <a href="index.html">Inicio</a>
+    <a href="uno.html">¿Qué es el Chocoflan?</a>
+    <a href="dos.html">Ingredientes</a>
+    <a href="tres.html">Receta</a>
+    <a href="cuatro.html">Galería</a>
+    <a href="seis.html">Blog</a>
+    <a href="siete.html">Juego</a>
+  </nav>
 
   <header>
     <h1>Receta del Chocoflan</h1>
@@ -113,16 +153,18 @@
     <ol>
       <li>Precalienta el horno a 180&nbsp;°C (350&nbsp;°F).</li>
       <li>Engrasa muy bien un molde con mantequilla y vierte en el fondo la cajeta o caramelo líquido.</li>
-      <li>En un recipiente, mezcla todos los ingredientes del pastel de chocolate hasta obtener una masa homogénea. Vierte esta mezcla en el molde encima del caramelo.</li>
-      <li>Licúa los ingredientes del flan (leche condensada, leche evaporada, huevos y vainilla) y vierte la mezcla lentamente sobre la masa del pastel. Aunque parezca que se mezclan, durante la cocción se separarán.</li>
-      <li>Cubre el molde con papel aluminio y colócalo en una bandeja más grande con agua caliente (baño maría).</li>
-      <li>Hornea durante aproximadamente 50 a 60 minutos, o hasta que al insertar un palillo en el centro, este salga limpio.</li>
-      <li>Retira del horno y deja enfriar a temperatura ambiente. Luego refrigera al menos 4 horas o de preferencia toda la noche.</li>
-      <li>Desmolda cuidadosamente sobre un plato grande. La capa de cajeta quedará en la parte superior.</li>
+      <li>Mezcla los ingredientes del pastel de chocolate hasta obtener una masa homogénea. Vierte en el molde encima del caramelo.</li>
+      <li>Licúa los ingredientes del flan (leche condensada, leche evaporada, huevos y vainilla) y vierte lentamente sobre la masa. Durante la cocción se separarán.</li>
+      <li>Cubre con papel aluminio y hornea a baño maría por 50–60 minutos, hasta que al insertar un palillo salga limpio.</li>
+      <li>Deja enfriar a temperatura ambiente y luego refrigera 4 horas o toda la noche.</li>
+      <li>Desmolda con cuidado sobre un plato grande. La capa de cajeta quedará arriba.</li>
       <li>¡Disfruta tu delicioso chocoflan!</li>
     </ol>
   </section>
 
+  <footer>
+    © 2025 Recetas Dulces MX — Todos los derechos reservados 🍮
+  </footer>
+
 </body>
 </html>
-
